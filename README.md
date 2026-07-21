@@ -1,4 +1,3 @@
-Dưới đây là file **`README.md`** chuẩn mực, chuyên nghiệp và được thiết kế tối ưu để tạo ấn tượng mạnh trên GitHub cũng như trong hồ sơ tuyển dụng (Portfolio / CV) của bạn.
 
 ---
 
