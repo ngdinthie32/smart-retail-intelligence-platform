@@ -1,0 +1,26 @@
+# Dependencies (Bắt buộc phải ignore)
+node_modules/
+**/node_modules/
+
+# Build outputs
+dist/
+**/dist/
+build/
+**/build/
+.vite/
+**/.vite/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs & System files
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# IDE / Editors
+.vscode/
+.idea/

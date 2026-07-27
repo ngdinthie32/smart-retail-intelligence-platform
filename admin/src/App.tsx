@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { T } from './constants/theme'
-import { BRANCH_OPTS, SORT_OPTS } from './constants/mockData'
-import { Sidebar } from './components/layout/Sidebar'
-import { Header } from './components/layout/Header'
-import { DashboardPage } from './pages/DashboardPage'
+import { T } from '@/constants/theme'
+import { BRANCH_OPTS, SORT_OPTS } from '@/constants/mockData'
+import { Sidebar } from '@/components/layout/Sidebar'
+import { Header } from '@/components/layout/Header'
+import { DashboardPage } from '@/pages/DashboardPage'
+import { ProductsPage } from '@/pages/ProductsPage'
 
 export default function App() {
   const [sideOpen, setSideOpen] = useState(true)
@@ -33,8 +34,8 @@ export default function App() {
       }}>
         <Header branch={branch} setBranch={setBranch} sort={sort} setSort={setSort} />
 
-        {/* Render theo trang tương ứng */}
         {activeNav === 'Dashboard' && <DashboardPage sort={sort} />}
+        {(activeNav === 'Products' || activeNav === 'products' || activeNav === 'Sản phẩm') && <ProductsPage />}
 
         <div style={{ height: 4 }}/>
       </main>
