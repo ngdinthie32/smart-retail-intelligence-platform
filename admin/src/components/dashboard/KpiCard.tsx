@@ -1,4 +1,4 @@
-import { T } from '../../constants/theme'
+import { T } from '@/constants/theme'
 
 interface KpiCardProps {
   label: string
@@ -14,18 +14,13 @@ export function KpiCard({ label, value, badge, bPos, bAmber, chart }: KpiCardPro
   const badgeFg = bAmber ? '#A06000' : bPos ? '#00733A' : '#C0392B'
   
   return (
-    <div style={{
-      background: T.card,
-      borderRadius: 24,
-      boxShadow: T.shadow,
-      display: 'flex',
-      flexDirection: 'column',
-      overflow: 'hidden',
-      flex: 1,
-      minWidth: 0,
-      position: 'relative',
-    }}>
-      {/* Đã bỏ div background trắng mờ overlay ở đây */}
+    <div 
+      className="flex flex-col flex-1 min-w-0 overflow-hidden relative rounded-[24px] w-full"
+      style={{
+        background: T.card,
+        boxShadow: T.shadow,
+      }}
+    >
       <div style={{ padding: '22px 22px 10px', flex: 1 }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
           <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.11em', color: T.muted, textTransform: 'uppercase' }}>

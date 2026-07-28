@@ -3,7 +3,7 @@ import type { PriceHistoryItem, Product } from '../../types/product'
 
 interface PriceHistoryDrawerProps {
   product: Product | null
-  history: PriceHistoryItem[]
+  history?: PriceHistoryItem[]
   onClose: () => void
 }
 
@@ -47,7 +47,7 @@ function initials(name: string) {
     .toUpperCase()
 }
 
-export default function PriceHistoryDrawer({ product, history, onClose }: PriceHistoryDrawerProps) {
+export default function PriceHistoryDrawer({ product, history = [], onClose }: PriceHistoryDrawerProps) {
   const isOpen = !!product
 
   useEffect(() => {
@@ -71,17 +71,18 @@ export default function PriceHistoryDrawer({ product, history, onClose }: PriceH
           WebkitBackdropFilter: 'blur(4px)',
           zIndex: 400,
           opacity: isOpen ? 1 : 0,
+          visibility: isOpen ? 'visible' : 'hidden',
           pointerEvents: isOpen ? 'auto' : 'none',
-          transition: 'opacity 0.25s ease',
+          transition: 'opacity 0.3s ease, visibility 0.3s ease',
         }}
       />
 
-      {/* Drawer panel */}
+      {/* Drawer Panel */}
       <aside
         style={{
           position: 'fixed',
           top: 12,
-          right: isOpen ? 12 : -500,
+          right: 12,
           bottom: 12,
           width: 420,
           maxWidth: 'calc(100vw - 24px)',
@@ -95,7 +96,10 @@ export default function PriceHistoryDrawer({ product, history, onClose }: PriceH
           display: 'flex',
           flexDirection: 'column',
           overflow: 'hidden',
-          transition: 'right 0.30s cubic-bezier(.4,0,.2,1)',
+          transform: isOpen ? 'translateX(0)' : 'translateX(calc(100% + 40px))',
+          visibility: isOpen ? 'visible' : 'hidden',
+          pointerEvents: isOpen ? 'auto' : 'none',
+          transition: 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease',
         }}
       >
         {/* Header */}
@@ -155,6 +159,7 @@ export default function PriceHistoryDrawer({ product, history, onClose }: PriceH
               )}
             </div>
             <button
+              type="button"
               onClick={onClose}
               style={{
                 width: 30,
@@ -396,6 +401,7 @@ export default function PriceHistoryDrawer({ product, history, onClose }: PriceH
           }}
         >
           <button
+            type="button"
             onClick={onClose}
             style={{
               flex: 1,
@@ -412,6 +418,7 @@ export default function PriceHistoryDrawer({ product, history, onClose }: PriceH
             Close
           </button>
           <button
+            type="button"
             style={{
               flex: 1,
               padding: '11px',

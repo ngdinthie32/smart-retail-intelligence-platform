@@ -5,6 +5,10 @@ import { Sidebar } from '@/components/layout/Sidebar'
 import { Header } from '@/components/layout/Header'
 import { DashboardPage } from '@/pages/DashboardPage'
 import { ProductsPage } from '@/pages/ProductsPage'
+import { InventoryPage } from '@/pages/InventoryPage'
+
+// 1. Import trang ShiftPage
+import { ShiftPage } from '@/pages/ShiftPage'
 
 export default function App() {
   const [sideOpen, setSideOpen] = useState(true)
@@ -34,8 +38,13 @@ export default function App() {
       }}>
         <Header branch={branch} setBranch={setBranch} sort={sort} setSort={setSort} />
 
+        {/* Các trang điều hướng */}
         {activeNav === 'Dashboard' && <DashboardPage sort={sort} />}
         {(activeNav === 'Products' || activeNav === 'products' || activeNav === 'Sản phẩm') && <ProductsPage />}
+        {(activeNav === 'Inventory' || activeNav === 'inventory' || activeNav === 'Kho hàng') && <InventoryPage />}
+
+        {/* 2. Thêm điều kiện hiển thị ShiftPage */}
+        {(activeNav === 'Shifts' || activeNav === 'shifts' || activeNav === 'Shift' || activeNav === 'shift' || activeNav === 'Ca làm việc' || activeNav === 'Lịch ca') && <ShiftPage />}
 
         <div style={{ height: 4 }}/>
       </main>

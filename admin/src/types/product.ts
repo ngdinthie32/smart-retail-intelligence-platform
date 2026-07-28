@@ -1,24 +1,34 @@
-export type ProductCategory =
-  | 'Beverages'
-  | 'Snacks'
-  | 'Ready Meals'
-  | 'Dairy'
-  | 'Bakery'
-  | 'Frozen'
-  | 'Personal Care'
-  | 'Household'
+// src/types/product.ts
+
+export interface CategoryTag {
+  id: string
+  path: string
+}
+
+export interface StockDetail {
+  total: number
+  site: number
+  reserved: number
+}
 
 export interface Product {
   id: string
   sku: string
+  barcode: string
   name: string
-  category: ProductCategory
+  group: 'A' | 'B' | 'C'
+  categories: CategoryTag[]
   brand: string
-  reference_cost_price: number
+  vendor: string
   selling_price: number
-  stock: number
-  branch: string
-  last_updated: string
+  reference_cost_price: number
+  profitMargin: number
+  stock: StockDetail
+  expDate: string
+  collection: string
+  country: string
+  tags: string[]
+  images: string[]
 }
 
 export interface PriceHistoryItem {
@@ -33,12 +43,4 @@ export interface PriceHistoryItem {
     role: string
     avatar: string
   }
-}
-
-export interface EditPriceFormData {
-  product_id: string
-  sku: string
-  name: string
-  current_price: number
-  new_price: number
 }

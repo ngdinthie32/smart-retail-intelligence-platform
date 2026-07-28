@@ -1,11 +1,11 @@
-import { T } from '../constants/theme'
-import { revBars, profBars, discBars, BRANCH_KEYS, BRANCH_COLORS } from '../constants/mockData'
-import { KpiCard } from '../components/dashboard/KpiCard'
-import { CapsuleBars } from '../components/charts/CapsuleBars'
-import { OrdersWave } from '../components/charts/OrdersWave'
-import { BranchChart } from '../components/charts/BranchChart'
-import { LowStockAlert } from '../components/dashboard/LowStockAlert'
-import { ActivityTable } from '../components/dashboard/ActivityTable'
+import { T } from '@/constants/theme'
+import { revBars, profBars, BRANCH_KEYS, BRANCH_COLORS } from '@/constants/mockData'
+import { KpiCard } from '@/components/dashboard/KpiCard'
+import { CapsuleBars } from '@/components/charts/CapsuleBars'
+import { OrdersWave } from '@/components/charts/OrdersWave'
+import { BranchChart } from '@/components/charts/BranchChart'
+import { LowStockAlert } from '@/components/dashboard/LowStockAlert'
+import { ActivityTable } from '@/components/dashboard/ActivityTable'
 
 interface DashboardPageProps {
   sort: string
@@ -13,9 +13,9 @@ interface DashboardPageProps {
 
 export function DashboardPage({ sort }: DashboardPageProps) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-      {/* ── KPI Cards ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 18 }}>
+    <div className="flex flex-col gap-[18px]">
+      {/* ── KPI Cards (Tự động chuyển từ 1 -> 2 -> 3 cột tùy kích thước màn hình) ── */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[18px]">
         <KpiCard
           label="Revenue" value="$743,200" badge="+8.3%" bPos
           chart={<div style={{ height: '100%', padding: '0 18px 12px' }}><CapsuleBars data={revBars} c0={T.blue} c1={T.cyan}/></div>}
@@ -28,15 +28,14 @@ export function DashboardPage({ sort }: DashboardPageProps) {
           label="Orders" value="12,450" badge="+12%" bPos
           chart={<OrdersWave/>}
         />
-        <KpiCard
-          label="Discrepancy Alert" value="$1,240" badge="−$380" bAmber
-          chart={<div style={{ height: '100%', padding: '0 18px 12px' }}><CapsuleBars data={discBars} c0={T.amber} c1={T.coral}/></div>}
-        />
       </div>
 
-      {/* ── Middle Row ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 18 }}>
-        <div style={{ background: T.card, borderRadius: 24, padding: '24px 22px 18px', boxShadow: T.shadow, display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
+      {/* ── Middle Row (Responsive Layout: 1 cột trên mobile/tablet, 2fr-1fr trên màn hình lớn) ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-[18px]">
+        <div 
+          className="lg:col-span-2"
+          style={{ background: T.card, borderRadius: 24, padding: '24px 22px 18px', boxShadow: T.shadow, display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}
+        >
           <div style={{ position: 'absolute', inset: 0, borderRadius: 24, background: 'linear-gradient(145deg,rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 50%)', pointerEvents: 'none' }}/>
           <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 16 }}>
             <div>
@@ -52,11 +51,12 @@ export function DashboardPage({ sort }: DashboardPageProps) {
               ))}
             </div>
           </div>
-          {/* Tăng chiều cao biểu đồ từ 210px lên 260px */}
           <div style={{ height: 260 }}><BranchChart/></div>
         </div>
 
-        <LowStockAlert />
+        <div className="lg:col-span-1">
+          <LowStockAlert />
+        </div>
       </div>
 
       {/* ── Recent Activity ── */}
