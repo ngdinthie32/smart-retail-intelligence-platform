@@ -6,9 +6,10 @@ import { Header } from '@/components/layout/Header'
 import { DashboardPage } from '@/pages/DashboardPage'
 import { ProductsPage } from '@/pages/ProductsPage'
 import { InventoryPage } from '@/pages/InventoryPage'
-
-// 1. Import trang ShiftPage
 import { ShiftPage } from '@/pages/ShiftPage'
+
+// 1. Import trang AuditLogsPage
+import { AuditLogsPage } from '@/pages/AuditLogsPage'
 
 export default function App() {
   const [sideOpen, setSideOpen] = useState(true)
@@ -42,9 +43,10 @@ export default function App() {
         {activeNav === 'Dashboard' && <DashboardPage sort={sort} />}
         {(activeNav === 'Products' || activeNav === 'products' || activeNav === 'Sản phẩm') && <ProductsPage />}
         {(activeNav === 'Inventory' || activeNav === 'inventory' || activeNav === 'Kho hàng') && <InventoryPage />}
-
-        {/* 2. Thêm điều kiện hiển thị ShiftPage */}
         {(activeNav === 'Shifts' || activeNav === 'shifts' || activeNav === 'Shift' || activeNav === 'shift' || activeNav === 'Ca làm việc' || activeNav === 'Lịch ca') && <ShiftPage />}
+
+        {/* 2. Điều kiện hiển thị AuditLogsPage */}
+        {(activeNav === 'Audit Logs' || activeNav === 'Audit' || activeNav === 'audit' || activeNav === 'audit_logs' || activeNav === 'Nhật ký' || activeNav === 'Nhật ký hệ thống') && <AuditLogsPage />}
 
         <div style={{ height: 4 }}/>
       </main>
